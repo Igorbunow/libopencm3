@@ -161,6 +161,8 @@ specific memorymap.h header before including this header file.*/
 
 /* --- GPIOx_OTYPER values ------------------------------------------------- */
 
+#define GPIO_OTYPE(n, type)    ((type) << (n))
+#define GPIO_OTYPE_MASK(n)    ((1) << (n))
 /** @defgroup gpio_output_type GPIO Output Pin Driver Type
 @ingroup gpio_defines
 @{*/
@@ -205,6 +207,8 @@ specific memorymap.h header before including this header file.*/
 
 /* --- GPIOx_BSRR values --------------------------------------------------- */
 
+#define GPIO_SET_BIT(bit)    ((1) << (bit))
+#define GPIO_RESET_BIT(bit)  ((1) << (bit + 0x10))
 /* GPIOx_BSRR[31:16]: BRy: Port x reset bit y (y = 0..15) */
 /* GPIOx_BSRR[15:0]: BSy: Port x set bit y (y = 0..15) */
 
@@ -220,6 +224,10 @@ specific memorymap.h header before including this header file.*/
 
 #define GPIO_AFR(n, af)			((af) << ((n) * 4))
 #define GPIO_AFR_MASK(n)		(0xf << ((n) * 4))
+#define GPIO_AFR_H(n, af)	 GPIO_AFR( (n - 8), (af) ) 
+#define GPIO_AFR_H_MASK(n)	 GPIO_AFR( (n - 8), (0xf) ) 
+#define GPIO_AFR_L(n, af)	 GPIO_AFR( (n), (af) ) 
+#define GPIO_AFR_L_MASK(n)	 GPIO_AFR( (n), (0xf) )
 /** @defgroup gpio_af_num Alternate Function Pin Selection
 @ingroup gpio_defines
 @{*/
