@@ -33,5 +33,5 @@ AR		:= $(PREFIX)-ar
 AS		:= $(PREFIX)-as
 OBJCOPY		:= $(PREFIX)-objcopy
 OBJDUMP		:= $(PREFIX)-objdump
-GDB		:= $(PREFIX)-gdb
+GDB		:= gdb-multiarch
 SIZE		:= $(PREFIX)-size

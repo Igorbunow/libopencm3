@@ -1,0 +1,3 @@
+monitor version
+monitor reset halt
+load
