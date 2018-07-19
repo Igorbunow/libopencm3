@@ -39,19 +39,22 @@
 	@printf "  OBJDUMP $@\n"
 	$(Q)$(OBJDUMP) -S $< > $@
 
-%.elf: $(OBJ_DIR) $(BIN_DIR)  $(OBJS) $(LDSCRIPT) $(LIBDEPS)
+%.elf:  $(OBJS) $(LDSCRIPT) $(LIBDEPS)
 	@printf "  LD      $(*).elf\n"
 	$(Q)$(LD) $(OBJS) $(LDLIBS) $(LDFLAGS) -T$(LDSCRIPT) $(ARCH_FLAGS)  -o $@
 
-$(OBJ_DIR)/%.o: %.c
+%.a:  $(OBJS)  $(LIBDEPS)
+	$(AR) $(ARFLAGS) $@ $^
+
+$(OBJ_DIR)/%.o: %.c $(OBJ_DIR) $(BIN_DIR)
 	@printf "  CC      $<\n"
 	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $@ -c $<
 
-$(OBJ_DIR)/%.o: %.cxx
+$(OBJ_DIR)/%.o: %.cxx $(OBJ_DIR) $(BIN_DIR)
 	@printf "  CXX     $<\n"
 	$(Q)$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $@ -c $<
 
-$(OBJ_DIR)/%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp $(OBJ_DIR) $(BIN_DIR)
 	@printf "  CXX     $(*).cpp\n"
 	$(Q)$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(ARCH_FLAGS) -o $@ -c $<
 
