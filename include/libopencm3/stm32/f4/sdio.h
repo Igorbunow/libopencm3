@@ -1,7 +1,13 @@
+/** @defgroup sdio_defines SDIO Defines
+@brief <b>Defined Constants and Types for the STM32F2xx SDIO</b>
+@ingroup STM32F2xx_defines
+@version 1.0.0
+@date 18 April 2017
+LGPL License Terms @ref lgpl_license
+ */
+
 /*
  * This file is part of the libopencm3 project.
- *
- * Copyright (C) 2012 Felix Held <felix-libopencm3@felixheld.de>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -20,15 +26,6 @@
 #ifndef LIBOPENCM3_SDIO_H
 #define LIBOPENCM3_SDIO_H
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <libopencm3/stm32/common/sdio_common_all.h>
 
-#if defined(STM32F2)
-#       include <libopencm3/stm32/f2/sdio.h>
-#elif defined(STM32F4)
-#       include <libopencm3/stm32/f4/sdio.h>
-#else
-#       error "stm32 family not defined."
-#endif
-
-#endif
+#endif 

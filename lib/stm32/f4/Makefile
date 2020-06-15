@@ -68,6 +68,8 @@ OBJS += usb.o usb_standard.o usb_control.o usb_msc.o
 OBJS += usb_hid.o
 OBJS += usb_dwc_common.o usb_f107.o usb_f207.o
 
+OBJS += sdio_common_all.o 
+
 OBJS += mac.o phy.o mac_stm32fxx7.o phy_ksz80x1.o
 
 VPATH += ../../usb:../:../../cm3:../common
