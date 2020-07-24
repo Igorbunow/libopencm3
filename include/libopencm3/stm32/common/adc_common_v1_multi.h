@@ -241,6 +241,20 @@ specific memorymap.h header before including this header file.*/
 
 /* Bit 18:21 reserved, must be kept at reset value. */
 
+/* PRESCALER: ADC prescaler. */
+/****************************************************************************/
+/** @defgroup adc_dma_mode ADC DMA mode for multi ADC mode
+@ingroup adc_defines
+
+@{*/
+#define ADC_CCR_ADCPRE_PCLK2_DIV2  (0x0 << 16)
+#define ADC_CCR_ADCPRE_PCLK2_DIV4  (0x1 << 16)
+#define ADC_CCR_ADCPRE_PCLK2_DIV6  (0x2 << 16)
+#define ADC_CCR_ADCPRE_PCLK2_DIV8  (0x3 << 16)
+/**@}*/
+
+
+
 /* DMA: Direct memory access mode for multi ADC mode. */
 /****************************************************************************/
 /** @defgroup adc_dma_mode ADC DMA mode for multi ADC mode
