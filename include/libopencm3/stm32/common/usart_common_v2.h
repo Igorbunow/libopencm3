@@ -237,15 +237,6 @@
 @ingroup usart_defines
 @{*/
 
-/** RXFFIE: RXFIFO Full interrupt enable */
-#define USART_CR1_RXFFIE			(1 << 31) /* G4 */
-
-/** TXFEIE: TXFIFO empty interrupt enable */
-#define USART_CR1_TXFEIE			(1 << 30) /* G4 */
-
-/** FIFOEN: FIFO mode enable */
-#define USART_CR1_FIFOEN			(1 << 29) /* G4 */
-
 /** M1: Wordlength. @sa M0 */
 #define USART_CR1_M1			(1 << 28) /* F07x */
 
@@ -398,10 +389,10 @@
 #define USART_CR2_ADDM7			(1 << 4)
 
 /** DIS_NSS: When the DIS_NSS bit is set, the NSS pin input is ignored */
-#define USART_CR2_DIS_NSS:			(1 << 3)
+#define USART_CR2_DIS_NSS			(1 << 3)
 
 /** SLVEN: Synchronous Slave mode enable */
-#define USART_CR2_DIS_SLVEN:			(1 << 0)
+#define USART_CR2_DIS_SLVEN			(1 << 0)
 
 /**@}*/
 
@@ -439,15 +430,6 @@
 #define USART_CR3_RXFTCFG_REACHES_7DIV8	(0x4 << USART_CR3_RXFTCFG_SHIFT)
 #define USART_CR3_RXFTCFG_BECOMES_EMPTY	(0x5 << USART_CR3_RXFTCFG_SHIFT)
 /**@}*/
-
-/** RXFTIE: RXFIFO threshold interrupt enable */
-#define USART_CR3_RXFTIE			(1 << 28)
-
-/** TCBGTIE: Transmission Complete before guard time, interrupt enable */
-#define USART_CR3_TCBGTIE			(1 << 24)
-
-/** TXFTIE: TXFIFO threshold interrupt enable */
-#define USART_CR3_TXFTIE			(1 << 23)
 
 /** WUFIE: Wakeup from Stop mode interrupt enable */
 #define USART_CR3_WUFIE			(1 << 22)
@@ -571,20 +553,6 @@
  * @{
  */
 
-/** TXFT: TXFIFO threshold flag */
-#define USART_ISR_TXFT		            (1 << 27)
-
-/** RXFT: RXFIFO threshold flag */
-#define USART_ISR_RXFT		            (1 << 26)
-
-/** TCBGT: Transmission complete before guard time flag */
-#define USART_ISR_TCBGT		            (1 << 25)
-
-/** RXFF: RXFIFO full */
-#define USART_ISR_RXFF		            (1 << 24)
-
-/** TXFE: TXFIFO empty */
-#define USART_ISR_TXFE		            (1 << 23)
 
 /** REACK: Receive enable acknowledge flag */
 #define USART_ISR_REACK		            (1 << 22)
@@ -686,9 +654,6 @@
 
 /** TCCF: Transmission complete clear flag */
 #define USART_ICR_TCCF			    (1 << 6)
-
-/** TXFECF: TXFIFO empty clear flag */
-#define USART_ICR_TXFECF		    (1 << 5)
 
 /** IDLECF: Idle line detected clear flag */
 #define USART_ICR_IDLECF		    (1 << 4)
