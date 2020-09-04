@@ -194,6 +194,21 @@
 #define UART5_TDR			USART_TDR(UART5_BASE)
 #endif
 
+/** USART prescaler register (USART_PRESC) */
+#define USART_PRESC(usart_base)		MMIO32((usart_base) + 0x2C)
+#define USART1_PRESC			USART_PRESC(USART1_BASE)
+#define USART2_PRESC			USART_PRESC(USART2_BASE)
+#define USART3_PRESC			USART_PRESC(USART3_BASE)
+#if defined(USART4_BASE)
+#define USART4_PRESC			USART_PRESC(USART4_BASE)
+#endif
+#if defined(UART4_BASE)
+#define UART4_PRESC			USART_PRESC(UART4_BASE)
+#endif
+#if defined(UART5_BASE)
+#define UART5_PRESC			USART_PRESC(UART5_BASE)
+#endif
+
 /**@}*/
 
 /** @defgroup usart_convenience_flags U(S)ART convenience Flags
@@ -221,6 +236,15 @@
 /** @defgroup usart_cr1_values USART_CR1 Values
 @ingroup usart_defines
 @{*/
+
+/** RXFFIE: RXFIFO Full interrupt enable */
+#define USART_CR1_RXFFIE			(1 << 31) /* G4 */
+
+/** TXFEIE: TXFIFO empty interrupt enable */
+#define USART_CR1_TXFEIE			(1 << 30) /* G4 */
+
+/** FIFOEN: FIFO mode enable */
+#define USART_CR1_FIFOEN			(1 << 29) /* G4 */
 
 /** M1: Wordlength. @sa M0 */
 #define USART_CR1_M1			(1 << 28) /* F07x */
@@ -315,6 +339,19 @@
 #define USART_CR2_ABRMOD_FRAME_0x55	(0x3 << USART_CR2_ABRMOD_SHIFT)
 /**@}*/
 
+#define USART_CR2_STOP_MASK	3
+#define USART_CR2_STOP_SHIFT	12
+/** ABRMOD[1:0]: Auto baud rate mode
+ * @defgroup usart_cr2_abrmod Auto baud rate mode
+ * @ingroup usart_defines
+ * @{
+ */
+#define USART_CR2_STOP_1BIT	(0x0 << USART_CR2_STOP_SHIFT)
+#define USART_CR2_STOP_05BIT	(0x1 << USART_CR2_STOP_SHIFT)
+#define USART_CR2_STOP_2BIT	(0x2 << USART_CR2_STOP_SHIFT)
+#define USART_CR2_STOP_15BIT	(0x3 << USART_CR2_STOP_SHIFT)
+/**@}*/
+
 /** RTOEN: Receiver timeout enable */
 #define USART_CR2_RTOEN			(1 << 23)
 
@@ -360,12 +397,58 @@
 /** ADDM7:7-bit Address Detection/4-bit Address Detection */
 #define USART_CR2_ADDM7			(1 << 4)
 
+/** DIS_NSS: When the DIS_NSS bit is set, the NSS pin input is ignored */
+#define USART_CR2_DIS_NSS:			(1 << 3)
+
+/** SLVEN: Synchronous Slave mode enable */
+#define USART_CR2_DIS_SLVEN:			(1 << 0)
+
 /**@}*/
 
 /*------------------------------------------------*/
 /** @defgroup usart_cr3_values USART_CR3 Values
 @ingroup usart_defines
 @{*/
+
+#define USART_CR3_TXFTCFG_MASK	7
+#define USART_CR3_TXFTCFG_SHIFT	29
+/** TXFTCFG[2:0]: TXFIFO threshold configuration
+ * @defgroup usart_cr3_txftcfg TXFIFO threshold configuration
+ * @ingroup usart_defines
+ * @{
+ */
+#define USART_CR3_TXFTCFG_REACHES_1DIV8	(0x0 << USART_CR3_TXFTCFG_SHIFT)
+#define USART_CR3_TXFTCFG_REACHES_1DIV4	(0x1 << USART_CR3_TXFTCFG_SHIFT)
+#define USART_CR3_TXFTCFG_REACHES_1DIV2	(0x2 << USART_CR3_TXFTCFG_SHIFT)
+#define USART_CR3_TXFTCFG_REACHES_3DIV4	(0x3 << USART_CR3_TXFTCFG_SHIFT)
+#define USART_CR3_TXFTCFG_REACHES_7DIV8	(0x4 << USART_CR3_TXFTCFG_SHIFT)
+#define USART_CR3_TXFTCFG_BECOMES_EMPTY	(0x5 << USART_CR3_TXFTCFG_SHIFT)
+/**@}*/
+
+#define USART_CR3_RXFTCFG_MASK	7
+#define USART_CR3_RXFTCFG_SHIFT	25
+/** RXFTCFG[2:0]: Receive FIFO threshold configuration
+ * @defgroup usart_cr3_rxftcfg Receive FIFO threshold configuration
+ * @ingroup usart_defines
+ * @{
+ */
+#define USART_CR3_RXFTCFG_REACHES_1DIV8	(0x0 << USART_CR3_RXFTCFG_SHIFT)
+#define USART_CR3_RXFTCFG_REACHES_1DIV4	(0x1 << USART_CR3_RXFTCFG_SHIFT)
+#define USART_CR3_RXFTCFG_REACHES_1DIV2	(0x2 << USART_CR3_RXFTCFG_SHIFT)
+#define USART_CR3_RXFTCFG_REACHES_3DIV4	(0x3 << USART_CR3_RXFTCFG_SHIFT)
+#define USART_CR3_RXFTCFG_REACHES_7DIV8	(0x4 << USART_CR3_RXFTCFG_SHIFT)
+#define USART_CR3_RXFTCFG_BECOMES_EMPTY	(0x5 << USART_CR3_RXFTCFG_SHIFT)
+/**@}*/
+
+/** RXFTIE: RXFIFO threshold interrupt enable */
+#define USART_CR3_RXFTIE			(1 << 28)
+
+/** TCBGTIE: Transmission Complete before guard time, interrupt enable */
+#define USART_CR3_TCBGTIE			(1 << 24)
+
+/** TXFTIE: TXFIFO threshold interrupt enable */
+#define USART_CR3_TXFTIE			(1 << 23)
+
 /** WUFIE: Wakeup from Stop mode interrupt enable */
 #define USART_CR3_WUFIE			(1 << 22)
 
@@ -488,6 +571,21 @@
  * @{
  */
 
+/** TXFT: TXFIFO threshold flag */
+#define USART_ISR_TXFT		            (1 << 27)
+
+/** RXFT: RXFIFO threshold flag */
+#define USART_ISR_RXFT		            (1 << 26)
+
+/** TCBGT: Transmission complete before guard time flag */
+#define USART_ISR_TCBGT		            (1 << 25)
+
+/** RXFF: RXFIFO full */
+#define USART_ISR_RXFF		            (1 << 24)
+
+/** TXFE: TXFIFO empty */
+#define USART_ISR_TXFE		            (1 << 23)
+
 /** REACK: Receive enable acknowledge flag */
 #define USART_ISR_REACK		            (1 << 22)
 
@@ -568,6 +666,9 @@
 /** CMCF: Character match clear flag */
 #define USART_ICR_CMCF			    (1 << 17)
 
+/** Bit 13 UDRCF:SPI slave underrun clear flag */
+#define USART_ICR_UDRCF			    (1 << 13)
+
 /** EOBCF: End of timeout clear flag */
 #define USART_ICR_EOBCF			    (1 << 12)
 
@@ -580,8 +681,14 @@
 /** LBDCF: LIN break detection clear flag */
 #define USART_ICR_LBDCF			    (1 << 8)
 
+/** TCBGTCF: Transmission complete before Guard time clear flag */
+#define USART_ICR_TCBGTCF		    (1 << 7)
+
 /** TCCF: Transmission complete clear flag */
 #define USART_ICR_TCCF			    (1 << 6)
+
+/** TXFECF: TXFIFO empty clear flag */
+#define USART_ICR_TXFECF		    (1 << 5)
 
 /** IDLECF: Idle line detected clear flag */
 #define USART_ICR_IDLECF		    (1 << 4)
