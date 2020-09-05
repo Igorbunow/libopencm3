@@ -401,36 +401,6 @@
 @ingroup usart_defines
 @{*/
 
-#define USART_CR3_TXFTCFG_MASK	7
-#define USART_CR3_TXFTCFG_SHIFT	29
-/** TXFTCFG[2:0]: TXFIFO threshold configuration
- * @defgroup usart_cr3_txftcfg TXFIFO threshold configuration
- * @ingroup usart_defines
- * @{
- */
-#define USART_CR3_TXFTCFG_REACHES_1DIV8	(0x0 << USART_CR3_TXFTCFG_SHIFT)
-#define USART_CR3_TXFTCFG_REACHES_1DIV4	(0x1 << USART_CR3_TXFTCFG_SHIFT)
-#define USART_CR3_TXFTCFG_REACHES_1DIV2	(0x2 << USART_CR3_TXFTCFG_SHIFT)
-#define USART_CR3_TXFTCFG_REACHES_3DIV4	(0x3 << USART_CR3_TXFTCFG_SHIFT)
-#define USART_CR3_TXFTCFG_REACHES_7DIV8	(0x4 << USART_CR3_TXFTCFG_SHIFT)
-#define USART_CR3_TXFTCFG_BECOMES_EMPTY	(0x5 << USART_CR3_TXFTCFG_SHIFT)
-/**@}*/
-
-#define USART_CR3_RXFTCFG_MASK	7
-#define USART_CR3_RXFTCFG_SHIFT	25
-/** RXFTCFG[2:0]: Receive FIFO threshold configuration
- * @defgroup usart_cr3_rxftcfg Receive FIFO threshold configuration
- * @ingroup usart_defines
- * @{
- */
-#define USART_CR3_RXFTCFG_REACHES_1DIV8	(0x0 << USART_CR3_RXFTCFG_SHIFT)
-#define USART_CR3_RXFTCFG_REACHES_1DIV4	(0x1 << USART_CR3_RXFTCFG_SHIFT)
-#define USART_CR3_RXFTCFG_REACHES_1DIV2	(0x2 << USART_CR3_RXFTCFG_SHIFT)
-#define USART_CR3_RXFTCFG_REACHES_3DIV4	(0x3 << USART_CR3_RXFTCFG_SHIFT)
-#define USART_CR3_RXFTCFG_REACHES_7DIV8	(0x4 << USART_CR3_RXFTCFG_SHIFT)
-#define USART_CR3_RXFTCFG_BECOMES_EMPTY	(0x5 << USART_CR3_RXFTCFG_SHIFT)
-/**@}*/
-
 /** WUFIE: Wakeup from Stop mode interrupt enable */
 #define USART_CR3_WUFIE			(1 << 22)
 
