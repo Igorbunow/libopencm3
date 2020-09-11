@@ -34,11 +34,13 @@
 The order of header inclusion is important. rtc.h includes the device
 specific memorymap.h header before including this header file.*/
 
+/**@{*/
+
 /** @cond */
 #ifdef LIBOPENCM3_RTC_H
 /** @endcond */
-#ifndef LIBOPENCM3_RTC2_H
-#define LIBOPENCM3_RTC2_H
+#ifndef LIBOPENCM3_RTC_COMMON_G4_H
+#define LIBOPENCM3_RTC_COMMON_G4_H
 
 /** @defgroup rtc_registers RTC Registers
  * @ingroup rtc_defines
@@ -102,7 +104,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_SCR			MMIO32(RTC_BASE + 0x5c)
 
 
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_tr_values RTC Time register (RTC_TR) values
@@ -135,7 +137,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_TR_SU_SHIFT   (0)
 /** Second units in BCD format mask */
 #define RTC_TR_SU_MASK    (0xf)
-/*@}*/
+/**@}*/
 
 /** @defgroup rtc_dr_values RTC Date register (RTC_DR) values
  * @ingroup rtc_registers
@@ -169,7 +171,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_DR_DU_SHIFT   (0)
 /** Date units in BCD format mask */
 #define RTC_DR_DU_MASK    (0xf)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_ssr_ss_values RTC Date register (RTC_DR) values
@@ -179,7 +181,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_SSR_SS_SHIFT    (0)
 #define RTC_SSR_SS_MASK     (0xffff)
 #define RTC_SSR_SS			(1 < RTC_SSR_SS_SHIFT)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_icsr_values RTC initialization control and status register (RTC_ICSR) values
@@ -215,7 +217,7 @@ specific memorymap.h header before including this header file.*/
 /** ALRAWF: Alarm A write flag */
 #define RTC_ICSR_ALRAWF		(1<<0)
 
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_prer_values RTC prescaler register (RTC_PRER) values
@@ -229,7 +231,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_PRER_PREDIV_S_SHIFT   (0)
 /** Sync prescaler factor mask */
 #define RTC_PRER_PREDIV_S_MASK    (0x7fff)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_wutr_values RTC wakeup timer register (RTC_WUTR) values
@@ -239,7 +241,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_WUTR_WUT_SHIFT   (0)
 /** Wakeup auto-reload value bits mask */
 #define RTC_WUTR_WUT_MASK    (0xffff)
-/*@}*/
+/**@}*/
 
 
 
@@ -279,7 +281,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_CR_OSEL_ALARMA      (0x1)
 #define RTC_CR_OSEL_ALARMB      (0x2)
 #define RTC_CR_OSEL_WAKEUP      (0x3)
-/*@}*/
+/**@}*/
 
 /** Output polarity */
 #define RTC_CR_POL              (1<<20)
@@ -327,7 +329,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_CR_WUCLKSEL_RTC_DIV2   (0x3)
 #define RTC_CR_WUCLKSEL_SPRE       (0x4)
 #define RTC_CR_WUCLKSEL_SPRE_216   (0x6)
-/*@}*/
+/**@}*/
 
 
 
@@ -338,7 +340,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_WPR_KEY_SHIFT   (0)
 /** Wakeup auto-reload value bits mask */
 #define RTC_WPR_KEY_MASK    (0xff)
-/*@}*/
+/**@}*/
 
 
 
@@ -367,10 +369,10 @@ specific memorymap.h header before including this header file.*/
 #define RTC_CALR_CALM_SHIFT   (0)
 /** Wakeup auto-reload value bits mask */
 #define RTC_CALR_CALM_MASK    (0xff)
-/*@}*/
+/**@}*/
 
 
-/*@}*/
+/**@}*/
 
 
 
@@ -386,7 +388,7 @@ specific memorymap.h header before including this header file.*/
 /** SUBFS[14:0]: Subtract a fraction of a second */
 #define RTC_SHIFTR_SUBFS_SHIFT    (0)
 #define RTC_SHIFTR_SUBFS_MASK     (0x7fff)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_tstr_values RTC time stamp time register (RTC_TSTR) values
@@ -420,7 +422,7 @@ specific memorymap.h header before including this header file.*/
 /** SU[3:0]: Second units in BCD format. */
 #define RTC_TSTR_SU_SHIFT         (0)
 #define RTC_TSTR_SU_MASK          (0xf)
-/*@}*/
+/**@}*/
 
 
 
@@ -448,7 +450,7 @@ specific memorymap.h header before including this header file.*/
 /** DU[3:0]: Date units in BCD format */
 #define RTC_TSDR_DU_SHIFT         (0)
 #define RTC_TSDR_DU_MASK          (0xf)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_tsssr_values RTC timestamp sub second register (RTC_TSSSR) values
@@ -459,7 +461,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_TSSSR_SS_SHIFT   (0)
 /** SS[15:0]: Sub second value bits mask */
 #define RTC_TSSSR_SS_MASK    (0xffff)
-/*@}*/
+/**@}*/
 
 
 
@@ -517,7 +519,7 @@ specific memorymap.h header before including this header file.*/
 /** SU[3:0]: Second units in BCD format. */
 #define RTC_ALRMXR_SU_SHIFT       (0)
 #define RTC_ALRMXR_SU_MASK        (0xf)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_alarmss_values RTC alarm X sub second register values
@@ -533,7 +535,7 @@ specific memorymap.h header before including this header file.*/
 /** SS[14:0]: Sub seconds value */
 #define RTC_ALRMXSSR_SS_SHIFT     (0)
 #define RTC_ALARXSSR_SS_MASK      (0x7fff)
-/*@}*/
+/**@}*/
 
 
 /** @defgroup rtc_misr_values RTC masked interrupt status register (RTC_MISR) values
@@ -553,14 +555,14 @@ specific memorymap.h header before including this header file.*/
 #define RTC_MISR_ALRBWMF             (1<<1)
 /** ALRAMF: Alarm A masked flag */
 #define RTC_MISR_ALRAWMF             (1<<0)
-/*@}*/
+/**@}*/
 
 
 
 
 
 
-/** @defgroup rtc_scr_values RTC initialization and status register (RTC_ISR) values
+/** @defgroup rtc_scr_values RTC status clear register (RTC_SCR) values
  * @ingroup rtc_registers
  * Note: Bits [31:6] are reserved, and must be kept at reset value.
 @{*/
@@ -577,7 +579,7 @@ specific memorymap.h header before including this header file.*/
 #define RTC_SCR_CALRBWF             (1<<1)
 /** CALRAF: Clear alarm A flag */
 #define RTC_SCR_CALRAWF             (1<<0)
-/*@}*/
+/**@}*/
 
 
 
@@ -587,7 +589,6 @@ specific memorymap.h header before including this header file.*/
 
 BEGIN_DECLS
 
-/*
 uint32_t rtc_get_bcd_date(void);
 uint32_t rtc_get_bcd_time(void);
 void rtc_set_prescaler(uint32_t sync, uint32_t async);
@@ -595,8 +596,17 @@ void rtc_wait_for_synchro(void);
 void rtc_lock(void);
 void rtc_unlock(void);
 void rtc_set_wakeup_time(uint16_t wkup_time, uint8_t rtc_cr_wucksel);
-void rtc_clear_wakeup_flag(void);
-*/
+
+void rtc_enable_alarm_a_interrupt(void);
+void rtc_enable_alarm_b_interrupt(void);
+void rtc_enable_timestamp_interrupt(void);
+void rtc_enable_wakeup_interrupt(void);
+
+void rtc_enable_alarm_a(void);
+void rtc_enable_alarm_b(void);
+void rtc_enable_timestamp(void);
+void rtc_enable_wakeup_timer(void);
+
 
 END_DECLS
 /**@}*/
@@ -604,8 +614,8 @@ END_DECLS
 #endif  /* RTC2_H */
 /** @cond */
 #else
-#warning "rtc_common_l1f024.h should not be included explicitly, only via rtc.h"
+#warning "rtc_common_g4.h should not be included explicitly, only via rtc.h"
 #endif
 /** @endcond */
 
-
+/**@}*/
