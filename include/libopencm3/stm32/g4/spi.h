@@ -1,8 +1,8 @@
 /** @defgroup spi_defines SPI Defines
  *
- * @brief <b>Defined Constants and Types for the STM32F3xx SPI</b>
+ * @brief <b>Defined Constants and Types for the STM32G4xx SPI</b>
  *
- * @ingroup STM32F3xx_defines
+ * @ingroup STM32G4xx_defines
  *
  * @version 1.0.0
  *

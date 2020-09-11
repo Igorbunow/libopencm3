@@ -1,6 +1,6 @@
 /** @defgroup syscfg_defines SYSCFG Defines
  *
- * @ingroup STM32F4xx_defines
+ * @ingroup STM32G4xx_defines 
  *
  * @brief Defined Constants and Types for the STM32F4xx Sysconfig
  *

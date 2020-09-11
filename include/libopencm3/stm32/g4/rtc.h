@@ -1,8 +1,8 @@
 /** @defgroup rtc_defines RTC Defines
  *
- * @brief <b>Defined Constants and Types for the STM32F3xx Real Time Clock </b>
+ * @brief <b>Defined Constants and Types for the STM32G4xx Real Time Clock </b>
  *
- * @ingroup STM32F3xx_defines
+ * @ingroup STM32G4xx_defines
  *
  * @author @htmlonly &copy; @endhtmlonly 2014
  * Ken Sarkies <ksarkies@internode.on.net>
@@ -32,9 +32,14 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBOPENCM3_RTC_F3_H
-#define LIBOPENCM3_RTC_F3_H
+#ifndef LIBOPENCM3_RTC_H
+#define LIBOPENCM3_RTC_H
 
 #include <libopencm3/stm32/common/rtc_common_g4.h>
+
+BEGIN_DECLS
+
+
+END_DECLS
 
 #endif
