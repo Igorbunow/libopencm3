@@ -160,11 +160,17 @@ tim_reg_base
 bool timer_interrupt_source(uint32_t timer_peripheral, uint32_t flag)
 {
 /* flag not set or interrupt disabled or not an interrupt source */
+#ifdef IAR_CC
+ #pragma diag_suppress=Pa082
+#endif
 	if (((TIM_SR(timer_peripheral) &
 		TIM_DIER(timer_peripheral) & flag) == 0) ||
 		(flag > TIM_SR_BIF)) {
 		return false;
 	}
+#ifdef IAR_CC
+ #pragma diag_suppress=Pa082
+#endif   
 	return true;
 }
 

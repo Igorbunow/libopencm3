@@ -93,8 +93,16 @@ static uint16_t build_config_descriptor(usbd_device *usbd_dev,
 		}
 		/* For each alternate setting... */
 		for (j = 0; j < cfg->interface[i].num_altsetting; j++) {
+                  
+#ifdef IAR_CC
+#pragma diag_suppress=Pa039
+#endif
 			const struct usb_interface_descriptor *iface =
 					&cfg->interface[i].altsetting[j];
+#ifdef IAR_CC
+#pragma diag_default=Pa039
+#endif
+                        
 			/* Copy interface descriptor. */
 			memcpy(buf, iface, count = MIN(len, iface->bLength));
 			buf += count;
@@ -112,8 +120,16 @@ static uint16_t build_config_descriptor(usbd_device *usbd_dev,
 			}
 			/* For each endpoint... */
 			for (k = 0; k < iface->bNumEndpoints; k++) {
+
+#ifdef IAR_CC                          
+ #pragma diag_suppress=Pa039
+#endif
 				const struct usb_endpoint_descriptor *ep =
 				    &iface->endpoint[k];
+#ifdef IAR_CC
+ #pragma diag_default=Pa039
+#endif 
+                                
 				memcpy(buf, ep, count = MIN(len, ep->bLength));
 				buf += count;
 				len -= count;
@@ -345,8 +361,15 @@ usb_standard_set_interface(usbd_device *usbd_dev,
 	if (req->wIndex >= cfx->bNumInterfaces) {
 		return USBD_REQ_NOTSUPP;
 	}
-
+        
+        //Turn off IAR struct packed warning
+#ifdef IAR_CC
+ #pragma diag_suppress=Pa039
+#endif
 	iface = &cfx->interface[req->wIndex];
+#ifdef IAR_CC
+ #pragma diag_default=Pa039
+#endif
 
 	if (req->wValue >= iface->num_altsetting) {
 		return USBD_REQ_NOTSUPP;

@@ -153,7 +153,7 @@ int can_init(uint32_t canport, bool ttcm, bool abom, bool awum, bool nart,
 	}
 
 	if (silent) {
-		CAN_BTR(canport) |= CAN_BTR_SILM;
+		CAN_BTR(canport) |= (uint32_t)CAN_BTR_SILM;
 	} else {
 		CAN_BTR(canport) &= ~CAN_BTR_SILM;
 	}
@@ -512,7 +512,7 @@ void can_receive(uint32_t canport, uint8_t fifo, bool release, uint32_t *id,
 
 	if (timestamp) {
 		*timestamp = (CAN_RDTxR(canport, fifo_id) &
-			CAN_RDTxR_TIME_MASK) >> CAN_RDTxR_TIME_SHIFT;
+			(uint32_t)( CAN_RDTxR_TIME_MASK) >> CAN_RDTxR_TIME_SHIFT);
 	}
 
 	rdlxr.data32 = CAN_RDLxR(canport, fifo_id);

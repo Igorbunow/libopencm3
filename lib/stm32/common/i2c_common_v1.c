@@ -472,8 +472,14 @@ static void i2c_write7_v1(uint32_t i2c, int addr, uint8_t *data, size_t n)
 	i2c_send_start(i2c);
 
 	/* Wait for master mode selected */
+#ifdef IAR_CC
+ #pragma diag_suppress=Pa082
+#endif 
 	while (!((I2C_SR1(i2c) & I2C_SR1_SB)
 		& (I2C_SR2(i2c) & (I2C_SR2_MSL | I2C_SR2_BUSY))));
+#ifdef IAR_CC
+ #pragma diag_default=Pa082
+#endif
 
 	i2c_send_7bit_address(i2c, addr, I2C_WRITE);
 
@@ -495,8 +501,14 @@ static void i2c_read7_v1(uint32_t i2c, int addr, uint8_t *res, size_t n)
 	i2c_enable_ack(i2c);
 
 	/* Wait for master mode selected */
+#ifdef IAR_CC
+ #pragma diag_suppress=Pa082
+#endif
 	while (!((I2C_SR1(i2c) & I2C_SR1_SB)
 		& (I2C_SR2(i2c) & (I2C_SR2_MSL | I2C_SR2_BUSY))));
+#ifdef IAR_CC
+ #pragma diag_default=Pa082
+#endif 
 
 	i2c_send_7bit_address(i2c, addr, I2C_READ);
 

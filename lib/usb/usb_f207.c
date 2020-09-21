@@ -61,7 +61,7 @@ static usbd_device *stm32f207_usbd_init(void)
 	OTG_HS_GCCFG |= OTG_GCCFG_VBUSBSEN | OTG_GCCFG_PWRDWN;
 
 	/* Wait for AHB idle. */
-	while (!(OTG_HS_GRSTCTL & OTG_GRSTCTL_AHBIDL));
+	while (!(OTG_HS_GRSTCTL & (uint32_t)OTG_GRSTCTL_AHBIDL));
 	/* Do core soft reset. */
 	OTG_HS_GRSTCTL |= OTG_GRSTCTL_CSRST;
 	while (OTG_HS_GRSTCTL & OTG_GRSTCTL_CSRST);

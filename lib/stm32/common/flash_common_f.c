@@ -34,7 +34,7 @@ void flash_unlock(void)
 
 void flash_lock(void)
 {
-	FLASH_CR |= FLASH_CR_LOCK;
+	FLASH_CR |= (uint32_t)FLASH_CR_LOCK;
 }
 
 /* The bit number for EOP moves sometimes, but it's always a write 1 to clear */

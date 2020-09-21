@@ -59,9 +59,8 @@ bool dwt_enable_cycle_counter(void)
 {
 #if defined(__ARM_ARCH_6M__)
 	return false;			/* Not supported on ARMv6M */
-#endif /* defined(__ARM_ARCH_6M__) */
 
-#if defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__)
+#elif defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__)
 	/* Note TRCENA is for 7M and above*/
 	SCS_DEMCR |= SCS_DEMCR_TRCENA;
 	if (DWT_CTRL & DWT_CTRL_NOCYCCNT) {
@@ -71,10 +70,16 @@ bool dwt_enable_cycle_counter(void)
 	DWT_CYCCNT = 0;
 	DWT_CTRL |= DWT_CTRL_CYCCNTENA;
 	return true;
+
+#else      
+        
+        #warning CPU cycle counter not supported on other architectures
+        
+	return false;
+        
 #endif /* defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__) */
 
-	/* not supported on other architectures */
-	return false;
+	
 }
 /*---------------------------------------------------------------------------*/
 /** @brief DebugTrace Read the CPU cycle counter
@@ -91,14 +96,19 @@ uint32_t dwt_read_cycle_counter(void)
 {
 #if defined(__ARM_ARCH_6M__)
 	return 0;		/* Not supported on ARMv6M */
-#endif /* defined(__ARM_ARCH_6M__) */
 
-#if defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__)
+#elif defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__)
 	if (DWT_CTRL & DWT_CTRL_CYCCNTENA) {
 		return DWT_CYCCNT;
 	} else {
 		return 0;		/* not supported or enabled */
 	}
+#elif
+
+        #warning CPU cycle counter not supported on other architectures
+        
+        return 0;
+        
 #endif /* defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__) */
 }
 

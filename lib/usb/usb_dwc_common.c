@@ -93,7 +93,7 @@ void dwc_ep_setup(usbd_device *usbd_dev, uint8_t addr, uint8_t type,
 
 		if (callback) {
 			usbd_dev->user_callback_ctr[addr][USB_TRANSACTION_IN] =
-			    (void *)callback;
+			   callback;
 		}
 	}
 
@@ -107,7 +107,7 @@ void dwc_ep_setup(usbd_device *usbd_dev, uint8_t addr, uint8_t type,
 
 		if (callback) {
 			usbd_dev->user_callback_ctr[addr][USB_TRANSACTION_OUT] =
-			    (void *)callback;
+			  callback;
 		}
 	}
 }
@@ -120,10 +120,10 @@ void dwc_endpoints_reset(usbd_device *usbd_dev)
 
 	/* Disable any currently active endpoints */
 	for (i = 1; i < 4; i++) {
-		if (REBASE(OTG_DOEPCTL(i)) & OTG_DOEPCTL0_EPENA) {
+		if (REBASE(OTG_DOEPCTL(i)) & (uint32_t)OTG_DOEPCTL0_EPENA) {
 			REBASE(OTG_DOEPCTL(i)) |= OTG_DOEPCTL0_EPDIS;
 		}
-		if (REBASE(OTG_DIEPCTL(i)) & OTG_DIEPCTL0_EPENA) {
+		if (REBASE(OTG_DIEPCTL(i)) & (uint32_t)OTG_DIEPCTL0_EPENA) {
 			REBASE(OTG_DIEPCTL(i)) |= OTG_DIEPCTL0_EPDIS;
 		}
 	}
@@ -241,7 +241,7 @@ uint16_t dwc_ep_write_packet(usbd_device *usbd_dev, uint8_t addr,
 uint16_t dwc_ep_read_packet(usbd_device *usbd_dev, uint8_t addr,
 				  void *buf, uint16_t len)
 {
-	int i;
+	int i=0;
 	uint32_t *buf32 = buf;
 #if defined(__ARM_ARCH_6M__)
 	uint8_t *buf8 = buf;
@@ -281,6 +281,16 @@ uint16_t dwc_ep_read_packet(usbd_device *usbd_dev, uint8_t addr,
 		buf32 = (uint32_t *)buf8;
 	}
 #endif /* defined(__ARM_ARCH_6M__) */
+        
+
+#if   defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_6M__)
+
+#else
+   
+#error Please, define ARM FAMILY: __ARM_ARCH_7M__, __ARM_ARCH_7EM__ or __ARM_ARCH_6M__
+   
+#endif
+        
 
 	if (i) {
 		extra = REBASE(OTG_FIFO(0));
@@ -309,7 +319,7 @@ static void dwc_flush_txfifo(usbd_device *usbd_dev, int ep)
 	/* get fifo for this endpoint */
 	fifo = (REBASE(OTG_DIEPCTL(ep)) & OTG_DIEPCTL0_TXFNUM_MASK) >> 22;
 	/* wait for core to idle */
-	while (!(REBASE(OTG_GRSTCTL) & OTG_GRSTCTL_AHBIDL)) {
+	while (!(REBASE(OTG_GRSTCTL) & (uint32_t)OTG_GRSTCTL_AHBIDL)) {
 		/* idle */
 	}
 	/* flush tx fifo */
@@ -417,11 +427,11 @@ void dwc_poll(usbd_device *usbd_dev)
 		REBASE(OTG_GINTSTS) = OTG_GINTSTS_USBSUSP;
 	}
 
-	if (intsts & OTG_GINTSTS_WKUPINT) {
+	if (intsts & (uint32_t)OTG_GINTSTS_WKUPINT) {
 		if (usbd_dev->user_callback_resume) {
 			usbd_dev->user_callback_resume();
 		}
-		REBASE(OTG_GINTSTS) = OTG_GINTSTS_WKUPINT;
+		REBASE(OTG_GINTSTS) = (uint32_t)OTG_GINTSTS_WKUPINT;
 	}
 
 	if (intsts & OTG_GINTSTS_SOF) {

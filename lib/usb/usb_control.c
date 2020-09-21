@@ -158,7 +158,7 @@ usb_control_request_dispatch(usbd_device *usbd_dev,
 					  &(usbd_dev->control_state.complete));
 			if (result == USBD_REQ_HANDLED ||
 			    result == USBD_REQ_NOTSUPP) {
-				return result;
+				return (enum usbd_request_return_codes)result;
 			}
 		}
 	}
