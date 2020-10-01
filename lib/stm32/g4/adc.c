@@ -503,19 +503,19 @@ void adc_set_injected_offset(uint32_t adc, uint8_t reg, uint32_t offset)
 {
 	switch (reg) {
 	case 1:
-		ADC_OFR1(adc) |= ADC_OFR1_OFFSET1_EN;
+		ADC_OFR1(adc) |= (uint32_t)ADC_OFR1_OFFSET1_EN;
 		ADC_OFR1(adc) |= offset;
 		break;
 	case 2:
-		ADC_OFR2(adc) |= ADC_OFR2_OFFSET2_EN;
+		ADC_OFR2(adc) |= (uint32_t)ADC_OFR2_OFFSET2_EN;
 		ADC_OFR2(adc) |= offset;
 		break;
 	case 3:
-		ADC_OFR3(adc) |= ADC_OFR3_OFFSET3_EN;
+		ADC_OFR3(adc) |= (uint32_t)ADC_OFR3_OFFSET3_EN;
 		ADC_OFR3(adc) |= offset;
 		break;
 	case 4:
-		ADC_OFR4(adc) |= ADC_OFR4_OFFSET4_EN;
+		ADC_OFR4(adc) |= (uint32_t)ADC_OFR4_OFFSET4_EN;
 		ADC_OFR4(adc) |= offset;
 		break;
 	}
