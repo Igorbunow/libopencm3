@@ -9,9 +9,15 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-		        sh "echo karl we are building $pr_from_sha"
-		        checkout([$class: 'GitSCM', branches: [[name: "$pr_from_sha"]], userRemoteConfigs: [[url: "$pr_from_git_url"]]])
-		        step([$class: 'GitHubSetCommitStatusBuilder'])
+                sh "echo karl we are building $pr_from_sha"
+                checkout([$class: 'GitSCM', branches: [[name: "$pr_from_sha"]], userRemoteConfigs: [[url: "$pr_from_git_url"]]])
+                step([
+                    $class: "GitHubCommitStatusSetter",
+                    commitShaSource: [$class: "ManuallyEnteredShaSource", sha: "$pr_from_sha"],
+                    reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/libopencm3/libopencm3"],
+                    contextSource: [$class: "DefaultCommitContextSource"],
+                    statusResultSource: [ $class: "DefaultStatusResultSource"]
+                ]);
             }
         }
         stage('prepare') {
@@ -24,15 +30,15 @@ pipeline {
         		''' 
             }
         }
-    	stage('build') {
-    		steps {
-    		    sh '''
-    		    . .env3/bin/activate
-    		    make -j5 V=s
-    		    make -C tests/gadget-zero all V=s
-    		    '''
-    		}
-    	}
+        stage('build') {
+            steps {
+                sh '''
+                    . .env3/bin/activate
+                    make V=1
+                    make -C tests/gadget-zero all V=s
+                '''
+            }
+        }
         stage('Testprepare') {
             steps {
         		sh label: 'gadget0', script: '''
@@ -66,14 +72,13 @@ pipeline {
     }
     post {
     	always {
-    		junit 'tests/gadget-zero/tests/*/TEST-*.xml'
-            step([
-                $class: "GitHubCommitStatusSetter",
+            step([$class: "GitHubCommitStatusSetter",
                 commitShaSource: [$class: "ManuallyEnteredShaSource", sha: "$pr_from_sha"],
-                reposSource: [$class: "ManuallyEnteredRepositorySource", url: "$pr_from_git_url"],
+                reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/libopencm3/libopencm3"],
                 contextSource: [$class: "DefaultCommitContextSource"],
                 statusResultSource: [ $class: "DefaultStatusResultSource"]
             ]);
+            junit 'tests/gadget-zero/tests/*/TEST-*.xml'
     	}
     } 
 }
