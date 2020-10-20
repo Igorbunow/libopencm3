@@ -458,6 +458,49 @@ return transfer7_bytes;
 }
 
 
+
+int16_t i2c_read_16bit_register(uint32_t i2c, uint8_t i2c_addr, uint8_t reg_addr){
+	
+	int16_t reg_data = 0;
+	
+	i2c_set_7bit_address(i2c, addr);
+	i2c_set_write_transfer_dir(i2c);
+	i2c_set_bytes_to_transfer(i2c, 1);
+	
+	if (i2c_nack(i2c) == 0){
+		
+		bool wait = true;
+		while (wait) {
+			if (i2c_transmit_int_status(i2c)) {
+				wait = false;
+			}
+		}
+		i2c_send_data(i2c, i2c_addr);
+		
+		while (!i2c_transfer_complete(i2c));		
+	}
+	
+	/* Setting transfer properties */
+	i2c_set_7bit_address(i2c, addr);
+	i2c_set_read_transfer_dir(i2c);
+	i2c_set_bytes_to_transfer(i2c, 2);
+	/* start transfer */
+	i2c_send_start(i2c);
+	/* important to do it afterwards to do a proper repeated start! */
+	i2c_enable_autoend(i2c);
+	if (i2c_nack(i2c) == 0){
+		while (i2c_received_data(i2c) == 0);
+		reg_data = (i2c_get_data(i2c) << 8) & 0xff00;
+		
+		while (i2c_received_data(i2c) == 0);
+		reg_data |= i2c_get_data(i2c) & 0x00ff;
+	}
+	
+	return reg_data;
+	
+}
+
+
 /**
  * Set the i2c communication speed.
  * NOTE: 1MHz mode not yet implemented!
