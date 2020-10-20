@@ -459,11 +459,11 @@ return transfer7_bytes;
 
 
 
-int16_t i2c_read_16bit_register(uint32_t i2c, uint8_t i2c_addr, uint8_t reg_addr){
+int16_t i2c_read7_16bit_register(uint32_t i2c, uint8_t i2c_addr, uint8_t reg_addr){
 	
 	int16_t reg_data = 0;
 	
-	i2c_set_7bit_address(i2c, addr);
+	i2c_set_7bit_address(i2c, i2c_addr);
 	i2c_set_write_transfer_dir(i2c);
 	i2c_set_bytes_to_transfer(i2c, 1);
 	
@@ -475,13 +475,13 @@ int16_t i2c_read_16bit_register(uint32_t i2c, uint8_t i2c_addr, uint8_t reg_addr
 				wait = false;
 			}
 		}
-		i2c_send_data(i2c, i2c_addr);
+		i2c_send_data(i2c, reg_addr);
 		
 		while (!i2c_transfer_complete(i2c));		
 	}
 	
 	/* Setting transfer properties */
-	i2c_set_7bit_address(i2c, addr);
+	i2c_set_7bit_address(i2c, i2c_addr);
 	i2c_set_read_transfer_dir(i2c);
 	i2c_set_bytes_to_transfer(i2c, 2);
 	/* start transfer */

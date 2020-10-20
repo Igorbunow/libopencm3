@@ -71,16 +71,16 @@ inline static uint16_t  spi_xfer8_4_template(uint32_t spi, uint16_t data ){
 	
 	uint16_t data_ex;
 	
-	spi_set_data_size(SPI_EEPROM_DEV, SPI_CR2_DS_4BIT);
+	spi_set_data_size(spi, SPI_CR2_DS_4BIT);
 	
 	
 	data_ex = spi_xfer(spi,  data);
 	while (spi_is_busy(spi));
 	
 	
-	delay_tics(SPI_EEPROM_DALAY_AFTER_CS);
+	delay_tics(0x0f);
 	
-	spi_set_data_size(SPI_EEPROM_DEV, SPI_ENCODER_DATA_SIZE);
+	spi_set_data_size(spi, SPI_ENCODER_DATA_SIZE);
 	
 	return data_ex;
 	
