@@ -209,7 +209,7 @@ void adc_set_single_conversion_mode(uint32_t adc)
  * corresponding reduction in conversion time.
  *
  * @param[in] adc Unsigned int32. ADC base address (@ref adc_reg_base)
- * @param[in] resolution Unsigned int16. Resolution value (@ref adc_api_res)
+ * @param[in] resolution Unsigned int16. Resolution value (@ref adc_cfgr1_res)
  */
 void adc_set_resolution(uint32_t adc, uint16_t resolution)
 {
