@@ -527,8 +527,8 @@ void adc_set_injected_offset(uint32_t adc, uint8_t reg, uint32_t offset)
  * The ADC clock taken from the APB2 clock can be scaled down by 2, 4, 6 or 8.
  *
  * @param adc peripheral of choice @ref adc_reg_base
- * @param[in] source Unsigned int32. Source value for ADC Clock @ref
- * adc_ccr_adcpre
+ * @param[in] source Unsigned int32. Source value for ADC Clock @ref adc_ccr_presc
+ * 
  */
 void adc_set_clk_source(uint32_t adc, uint32_t source)
 {
@@ -542,8 +542,8 @@ void adc_set_clk_source(uint32_t adc, uint32_t source)
  * The ADC clock taken from the APB2 clock can be scaled down by 2, 4, 6 or 8.
  *
  * @param adc peripheral of choice @ref adc_reg_base
- * @param[in] prescale Unsigned int32. Prescale value for ADC Clock @ref
- * adc_ccr_adcpre
+ * @param[in] prescale Unsigned int32. Prescale value for ADC Clock @ref adc_ccr_presc
+ * 
  */
 void adc_set_clk_prescale(uint32_t adc, uint32_t ckmode)
 {
