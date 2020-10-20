@@ -61,7 +61,6 @@ inline static void delay_tics(uint32_t ticks){
 	
 	volatile uint8_t i;
 	for (i = 0 ; i < ticks; i++){
-		asm("nop");
 	}
 	
 }
