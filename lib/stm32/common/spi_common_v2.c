@@ -80,7 +80,7 @@ inline static uint16_t  spi_xfer8_4_template(uint32_t spi, uint16_t data ){
 	
 	delay_tics(0x0f);
 	
-	spi_set_data_size(spi, SPI_ENCODER_DATA_SIZE);
+	spi_set_data_size(spi, SPI_CR2_DS_16BIT);
 	
 	return data_ex;
 	
