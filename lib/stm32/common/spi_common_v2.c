@@ -170,6 +170,11 @@ uint8_t  spi_xfer8(uint32_t spi, uint8_t data ){
 }
 
 
+uint8_t spi_is_busy(uint32_t spi){
+	
+	return SPI_SR(spi) & SPI_SR_BSY;
+}
+
 
 /*---------------------------------------------------------------------------*/
 /** @brief SPI Set CRC length to 8 bits
