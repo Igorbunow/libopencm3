@@ -1070,7 +1070,7 @@ uint32_t rcc_system_clock_source(void);
 void rcc_clock_setup_pll(const struct rcc_clock_scale *clock);
 void __attribute__((deprecated("Use rcc_clock_setup_pll as direct replacement"))) rcc_clock_setup_hse_3v3(const struct rcc_clock_scale *clock);
 
-inline void set_ccipr_clock_source(enum rcc_ccipr_peripheral_shift peripheral_shift, uint8_t  clksel);
+void set_ccipr_clock_source(enum rcc_ccipr_peripheral_shift peripheral_shift, uint8_t  clksel);
 
 void rcc_set_clock48_source(enum rcc_ccipr_clk48 clksel);
 void rcc_set_adc345_source(enum rcc_ccipr_adc clksel);

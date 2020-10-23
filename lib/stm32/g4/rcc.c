@@ -906,7 +906,7 @@ void rcc_clock_setup_hse_3v3(const struct rcc_clock_scale *clock)
 	rcc_clock_setup_pll(clock);
 }
 
-inline void set_ccipr_clock_source(enum rcc_ccipr_peripheral_shift peripheral_shift, uint8_t  clksel){
+void set_ccipr_clock_source(enum rcc_ccipr_peripheral_shift peripheral_shift, uint8_t  clksel){
 	
 	RCC_CCIPR &= ~(RCC_CCIPR_MASK << peripheral_shift);
 	RCC_CCIPR |= (clksel << peripheral_shift);
