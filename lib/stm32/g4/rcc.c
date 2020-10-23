@@ -54,7 +54,7 @@ const struct rcc_clock_scale rcc_hsi_configs[RCC_CLOCK_3V3_END] = {
 	{ /* 24MHz */
 		.pllm = 2,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 4,
 		.pllq = 2,
 		.pllr = 4,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSI16,
@@ -72,7 +72,7 @@ const struct rcc_clock_scale rcc_hsi_configs[RCC_CLOCK_3V3_END] = {
 	{ /* 48MHz */
 		.pllm = 2,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSI16,
@@ -90,7 +90,7 @@ const struct rcc_clock_scale rcc_hsi_configs[RCC_CLOCK_3V3_END] = {
 	{ /* 96MHz */
 		.pllm = 2,
 		.plln = 24,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 4,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSI16,
@@ -108,7 +108,7 @@ const struct rcc_clock_scale rcc_hsi_configs[RCC_CLOCK_3V3_END] = {
 	{ /* 144MHz */
 		.pllm = 2,
 		.plln = 36,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 6, 
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSI16,
@@ -126,7 +126,7 @@ const struct rcc_clock_scale rcc_hsi_configs[RCC_CLOCK_3V3_END] = {
 	{ /* 170MHz */
 		.pllm = 4,
 		.plln = 85,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 0, /* USB requires CRS at this speed. */
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSI16,
@@ -147,7 +147,7 @@ const struct rcc_clock_scale rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 24MHz */
 		.pllm = 1,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 4,
 		.pllq = 2,
 		.pllr = 4,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -165,7 +165,7 @@ const struct rcc_clock_scale rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 48MHz */
 		.pllm = 1,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -183,7 +183,7 @@ const struct rcc_clock_scale rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 96MHz */
 		.pllm = 1,
 		.plln = 24,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 4,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -201,7 +201,7 @@ const struct rcc_clock_scale rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 144MHz */
 		.pllm = 1,
 		.plln = 36,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 6,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -219,7 +219,7 @@ const struct rcc_clock_scale rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 170MHz */
 		.pllm = 2,
 		.plln = 85,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 0, /* USB requires CRS at this speed. */
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -241,7 +241,7 @@ const struct rcc_clock_scale rcc_hse_12mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 24MHz */
 		.pllm = 2,
 		.plln = 16,
-		.pllp = 0,
+		.pllp = 4,
 		.pllq = 2,
 		.pllr = 4,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -259,7 +259,7 @@ const struct rcc_clock_scale rcc_hse_12mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 48MHz */
 		.pllm = 2,
 		.plln = 16,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -277,7 +277,7 @@ const struct rcc_clock_scale rcc_hse_12mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 96MHz */
 		.pllm = 2,
 		.plln = 32,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 4,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -295,7 +295,7 @@ const struct rcc_clock_scale rcc_hse_12mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 144MHz */
 		.pllm = 2,
 		.plln = 48,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 6,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -313,7 +313,7 @@ const struct rcc_clock_scale rcc_hse_12mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 170MHz */
 		.pllm = 3,
 		.plln = 85,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 0, /* USB requires CRS at this speed. */
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -334,7 +334,7 @@ const struct rcc_clock_scale rcc_hse_16mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 24MHz */
 		.pllm = 2,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 4,
 		.pllq = 2,
 		.pllr = 4,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -352,7 +352,7 @@ const struct rcc_clock_scale rcc_hse_16mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 48MHz */
 		.pllm = 2,
 		.plln = 12,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -370,7 +370,7 @@ const struct rcc_clock_scale rcc_hse_16mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 96MHz */
 		.pllm = 2,
 		.plln = 24,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 4,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -388,7 +388,7 @@ const struct rcc_clock_scale rcc_hse_16mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 144MHz */
 		.pllm = 2,
 		.plln = 36,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 6, 
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -406,7 +406,7 @@ const struct rcc_clock_scale rcc_hse_16mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 170MHz */
 		.pllm = 4,
 		.plln = 85,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 0, /* USB requires CRS at this speed. */
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -427,7 +427,7 @@ const struct rcc_clock_scale rcc_hse_24mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 24MHz */
 		.pllm = 2,
 		.plln = 8,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -445,7 +445,7 @@ const struct rcc_clock_scale rcc_hse_24mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 48MHz */
 		.pllm = 2,
 		.plln = 8,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 2,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -463,7 +463,7 @@ const struct rcc_clock_scale rcc_hse_24mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 96MHz */
 		.pllm = 2,
 		.plln = 16,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 4,
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -481,7 +481,7 @@ const struct rcc_clock_scale rcc_hse_24mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 144MHz */
 		.pllm = 2,
 		.plln = 24,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 6, 
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
@@ -499,7 +499,7 @@ const struct rcc_clock_scale rcc_hse_24mhz_3v3[RCC_CLOCK_3V3_END] = {
 	{ /* 170MHz */
 		.pllm = 6,
 		.plln = 85,
-		.pllp = 0,
+		.pllp = 2,
 		.pllq = 0, /* USB requires CRS at this speed. */
 		.pllr = 2,
 		.pll_source = RCC_PLLCFGR_PLLSRC_HSE,
