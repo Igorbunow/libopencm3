@@ -906,6 +906,12 @@ void rcc_clock_setup_hse_3v3(const struct rcc_clock_scale *clock)
 	rcc_clock_setup_pll(clock);
 }
 
+inline void set_ccipr_clock_source(enum rcc_ccipr_peripheral_shift peripheral_shift, uint8_t  clksel){
+	
+	RCC_CCIPR &= ~(RCC_CCIPR_MASK << peripheral_shift);
+	RCC_CCIPR |= (clksel << peripheral_shift);
+}
+
 /** Set clock source for 48MHz clock
  *
  * The 48 MHz clock is derived from one of the four following sources:
@@ -916,10 +922,85 @@ void rcc_clock_setup_hse_3v3(const struct rcc_clock_scale *clock)
  *
  * @param clksel One of the definitions above
  */
-void rcc_set_clock48_source(uint32_t clksel)
+void rcc_set_clock48_source(enum rcc_ccipr_clk48 clksel)
 {
-	RCC_CCIPR &= ~(RCC_CCIPR_SEL_MASK << RCC_CCIPR_CLK48_SHIFT);
-	RCC_CCIPR |= (clksel << RCC_CCIPR_CLK48_SHIFT);
+	set_ccipr_clock_source(RCC_CCIPR_CLK48_SHIFT, clksel);
+	
 }
+
+
+void rcc_set_adc345_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_ADC345_SHIFT, clksel);
+	
+}
+
+
+void rcc_set_adc12_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_ADC12_SHIFT, clksel);
+	
+}
+
+
+void rcc_set_fdcan_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_FDCAN_SHIFT, clksel);
+	
+}
+
+
+void rcc_set_i2s23_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_I2S23_SHIFT, clksel);
+	
+}
+
+void rcc_set_sai1_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_SAI1_SHIFT, clksel);
+	
+}
+
+void rcc_set_lptim1_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_LPTIM1_SHIFT, clksel);
+	
+}
+
+void rcc_set_i2c3_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_I2C3_SHIFT, clksel);
+	
+}
+
+void rcc_set_i2c2_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_I2C2_SHIFT, clksel);
+	
+}
+
+void rcc_set_i2c1_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_I2C1_SHIFT, clksel);
+	
+}
+
+void rcc_set_lpuart1_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_LPUART1_SHIFT, clksel);
+	
+}
+
+void rcc_set_lpuart5_source(enum rcc_ccipr_adc clksel){
+	
+	set_ccipr_clock_source(RCC_CCIPR_LPUART5_SHIFT, clksel);
+	
+}
+
+
+
+
+
 
 /**@}*/
